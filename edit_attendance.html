@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Attendance - FASTLANE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #101820;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #00c853;
+            color: white;
+            font-weight: bold;
+        }
+        a { color: #00e676; }
+    </style>
+</head>
+<body>
+
+    <h2>✏️ Edit Attendance</h2>
+
+    <form method="POST">
+
+        <label>Select Player</label>
+        <select name="player_id" required>
+            {% for player in players %}
+            <option value="{{ player[0] }}"
+                {% if player[0] == attendance[1] %}selected{% endif %}>
+                {{ player[1] }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <label>Attendance Date</label>
+        <input type="date" name="attendance_date"
+               value="{{ attendance[2] }}" required>
+
+        <label>Status</label>
+        <select name="status" required>
+            <option value="Present" {% if attendance[3] == 'Present' %}selected{% endif %}>Present</option>
+            <option value="Absent" {% if attendance[3] == 'Absent' %}selected{% endif %}>Absent</option>
+            <option value="Late" {% if attendance[3] == 'Late' %}selected{% endif %}>Late</option>
+        </select>
+
+        <button type="submit">Update Attendance</button>
+    </form>
+
+    <a href="/attendance-list">Back to Attendance</a>
+
+</body>
+</html>

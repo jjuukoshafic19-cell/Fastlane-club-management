@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Player Profile - FASTLANE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #101820;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+        .profile, .attendance {
+            background: #263746;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 10px;
+        }
+        h2 { color: #00e676; }
+        a { color: #00e676; }
+    </style>
+</head>
+<body>
+
+<h2>👤 PLAYER PROFILE</h2>
+
+<div class="profile">
+    <h3>{{ player[1] }}</h3>
+    <p>Age: {{ player[2] }}</p>
+    <p>Phone: {{ player[3] }}</p>
+    <p>Sport: {{ player[4] }}</p>
+    <a href="/edit-player/{{ player[0] }}">✏️ Edit Player</a>
+</div>
+
+<h3>📋 Attendance History</h3>
+
+{% for record in attendance %}
+<div class="attendance">
+    <p>Date: {{ record[0] }}</p>
+    <p>Status: {{ record[1] }}</p>
+</div>
+{% else %}
+<p>No attendance history yet.</p>
+{% endfor %}
+
+<br>
+<a href="/players-list">Back to Players</a>
+
+</body>
+</html>

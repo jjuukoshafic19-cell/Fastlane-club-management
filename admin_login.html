@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FASTLANE Admin Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #101820;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+        .card {
+            background: #263746;
+            padding: 25px;
+            border-radius: 12px;
+            max-width: 400px;
+            margin: 60px auto;
+        }
+        input, button {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 7px;
+        }
+        button {
+            background: #00c853;
+            color: white;
+            font-weight: bold;
+        }
+        h2 { text-align: center; color: #00e676; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2>🔐 FASTLANE ADMIN</h2>
+
+    <form method="POST">
+        <input type="text" name="username"
+               placeholder="Admin username" required>
+
+        <input type="password" name="password"
+               placeholder="Password" required>
+
+        <button type="submit">LOGIN</button>
+    </form>
+
+    <p><a href="/" style="color:#00e676;">Back to dashboard</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Player Reports - FASTLANE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #101820;
+            color: white;
+            font-family: Arial;
+            padding: 15px;
+        }
+        .player {
+            background: #263746;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 10px;
+        }
+        h2 { color: #00e676; }
+        a {
+            color: #00e676;
+        }
+    </style>
+</head>
+<body>
+
+<h2>📊 PLAYER PERFORMANCE REPORTS</h2>
+
+{% for report in reports %}
+<div class="player">
+
+    <h3>{{ report[1] }}</h3>
+
+    <p>Total Attendance: {{ report[2] }}</p>
+
+    <p>✅ Present: {{ report[3] or 0 }}</p>
+
+    <p>❌ Absent: {{ report[4] or 0 }}</p>
+
+    <p>⏰ Late: {{ report[5] or 0 }}</p>
+
+    {% if report[2] > 0 %}
+        <p>Attendance Rate:
+        {{ "%.1f"|format((report[3] or 0) / report[2] * 100) }}%</p>
+    {% else %}
+        <p>Attendance Rate: 0%</p>
+    {% endif %}
+
+</div>
+{% else %}
+<p>No players registered yet.</p>
+{% endfor %}
+
+<br>
+<a href="/">Back to Dashboard</a>
+
+</body>
+</html>

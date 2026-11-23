@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Player Attendance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #101827;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+        h1 { color: #00e5a0; text-align: center; }
+        form {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        label { display: block; margin-top: 15px; }
+        select, input, button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 7px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #00a878;
+            color: white;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        a {
+            display: block;
+            text-align: center;
+            color: #00e5a0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>📝 RECORD ATTENDANCE</h1>
+
+<form method="POST">
+
+    <label>Select Player</label>
+    <select name="player_id" required>
+        <option value="">Choose player</option>
+        {% for player in players %}
+        <option value="{{ player[0] }}">{{ player[1] }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Attendance Date</label>
+    <input type="date" name="attendance_date" required>
+
+    <label>Attendance Status</label>
+    <select name="status" required>
+        <option value="Present">Present</option>
+        <option value="Absent">Absent</option>
+        <option value="Late">Late</option>
+    </select>
+
+    <button type="submit">SAVE ATTENDANCE</button>
+
+</form>
+
+<a href="/">🏠 BACK TO DASHBOARD</a>
+
+</body>
+</html>

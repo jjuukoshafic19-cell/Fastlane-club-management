@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FASTLANE - Edit Team</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            background: #101820;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #00e676;
+            text-align: center;
+        }
+
+        form {
+            background: #1e2b36;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        input, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 15px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 7px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #00c853;
+            border: none;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            color: #00e676;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>EDIT TEAM</h1>
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="team_name"
+            value="{{ team[1] }}"
+            placeholder="Team name"
+            required
+        >
+
+        <select name="sport" required>
+
+            <option value="Football" {% if team[2] == 'Football' %}selected{% endif %}>Football</option>
+
+            <option value="Basketball" {% if team[2] == 'Basketball' %}selected{% endif %}>Basketball</option>
+
+            <option value="Volleyball" {% if team[2] == 'Volleyball' %}selected{% endif %}>Volleyball</option>
+
+            <option value="FreeSE B" {% if team[2] == 'FreeSE B' %}selected{% endif %}>FreeSE B</option>
+
+            <option value="Other" {% if team[2] == 'Other' %}selected{% endif %}>Other</option>
+
+        </select>
+
+        <button type="submit">SAVE CHANGES</button>
+
+    </form>
+
+    <a href="/teams-list">BACK TO TEAMS</a>
+
+</body>
+</html>

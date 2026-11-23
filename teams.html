@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FASTLANE Teams</title>
+
+    <style>
+        body {
+            background: #10131a;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 { color: #e5ad35; }
+
+        .container {
+            background: #202938;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 7px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #e5ad35;
+            border: none;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        a {
+            color: #e5ad35;
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>FASTLANE</h1>
+    <h2>Team Management 🏆</h2>
+
+    <p>Create a new sports team.</p>
+
+    <form method="POST" action="/teams">
+
+        <input
+            type="text"
+            name="team_name"
+            placeholder="Team name"
+            required
+        >
+
+        <select name="sport" required>
+            <option value="">Select sport</option>
+            <option>Football</option>
+            <option>Basketball</option>
+            <option>Volleyball</option>
+            <option>FreeSE B</option>
+        </select>
+
+        <button type="submit">CREATE TEAM</button>
+
+    </form>
+
+    <a href="/">← Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

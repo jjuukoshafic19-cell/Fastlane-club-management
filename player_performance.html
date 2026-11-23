@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Player Performance - FASTLANE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #101820;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+        .card {
+            background: #263746;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 10px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 6px;
+        }
+        button {
+            background: #00c853;
+            color: white;
+            font-weight: bold;
+        }
+        a { color: #00e676; }
+    </style>
+</head>
+<body>
+
+<h2>🏆 PLAYER PERFORMANCE</h2>
+
+<div class="card">
+<form method="POST">
+
+<label>Select Player</label>
+<select name="player_id" required>
+<option value="">Choose Player</option>
+{% for player in players %}
+<option value="{{ player[0] }}">{{ player[1] }}</option>
+{% endfor %}
+</select>
+
+<label>Select Game</label>
+<select name="game_id" required>
+<option value="">Choose Game</option>
+{% for game in games %}
+<option value="{{ game[0] }}">
+{{ game[1] }} vs {{ game[2] }}
+</option>
+{% endfor %}
+</select>
+
+<label>Goals</label>
+<input type="number" name="goals" min="0" value="0" required>
+
+<label>Assists</label>
+<input type="number" name="assists" min="0" value="0" required>
+
+<label>Yellow Cards</label>
+<input type="number" name="yellow_cards" min="0" value="0" required>
+
+<label>Red Cards</label>
+<input type="number" name="red_cards" min="0" value="0" required>
+
+<button type="submit">SAVE PERFORMANCE</button>
+
+</form>
+</div>
+
+<h3>Performance Records</h3>
+
+{% for record in records %}
+<div class="card">
+<h3>{{ record[1] }}</h3>
+<p>Game ID: {{ record[2] }}</p>
+<p>⚽ Goals: {{ record[3] }}</p>
+<p>🎯 Assists: {{ record[4] }}</p>
+<p>🟨 Yellow Cards: {{ record[5] }}</p>
+<p>🟥 Red Cards: {{ record[6] }}</p>
+</div>
+{% else %}
+<p>No performance records yet.</p>
+{% endfor %}
+
+<br>
+<a href="/">🏠 BACK TO DASHBOARD</a>
+
+</body>
+</html>

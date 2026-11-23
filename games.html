@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FASTLANE Games</title>
+
+    <style>
+        body {
+            background: #10131a;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 { color: #e5ad35; }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: #202938;
+            padding: 22px;
+            border-radius: 12px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 7px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #e5ad35;
+            border: none;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        a {
+            color: #e5ad35;
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>FASTLANE ⚽</h1>
+    <h2>Games & Matches</h2>
+
+    <p>Schedule a new match.</p>
+
+    <form method="POST" action="/games">
+
+        <input
+            type="text"
+            name="home_team"
+            placeholder="Home team"
+            required
+        >
+
+        <input
+            type="text"
+            name="away_team"
+            placeholder="Away team"
+            required
+        >
+
+        <select name="sport" required>
+            <option value="">Select sport</option>
+            <option>Football</option>
+            <option>Basketball</option>
+            <option>Volleyball</option>
+            <option>FreeSE B</option>
+        </select>
+
+        <input
+            type="date"
+            name="match_date"
+            required
+        >
+
+        <button type="submit">SAVE MATCH</button>
+
+    </form>
+
+    <a href="/">← Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

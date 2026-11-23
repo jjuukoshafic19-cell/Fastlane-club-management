@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Games - FASTLANE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #101820;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+        input, button {
+            padding: 12px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 6px;
+        }
+        input { width: 95%; }
+        button {
+            background: #00c853;
+            color: white;
+            font-weight: bold;
+        }
+        .game {
+            background: #263746;
+            padding: 15px;
+            margin-top: 12px;
+            border-radius: 8px;
+        }
+        a { color: #00e676; }
+    </style>
+</head>
+<body>
+
+    <h2>🔎 Search Games</h2>
+
+    <form action="/search-games" method="GET">
+        <input type="text" name="q"
+               placeholder="Enter a team name"
+               value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% for game in games %}
+    <div class="game">
+        <h3>{{ game[1] }} vs {{ game[2] }}</h3>
+        <p>Sport: {{ game[3] }}</p>
+        <p>Date: {{ game[4] }}</p>
+        <p>Score: {{ game[5] }} - {{ game[6] }}</p>
+        <p>Status: {{ game[7] }}</p>
+        <a href="/edit-game/{{ game[0] }}">Edit Game</a>
+    </div>
+    {% else %}
+    <p>No games found.</p>
+    {% endfor %}
+
+    <br>
+    <a href="/">Back to Dashboard</a>
+
+</body>
+</html>

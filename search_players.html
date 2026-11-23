@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Players - FASTLANE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            background: #101827;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 18px;
+        }
+
+        h1 {
+            color: #00e5a0;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            min-width: 0;
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        button {
+            padding: 14px;
+            background: #00a878;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .player {
+            background: #1e293b;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+        }
+
+        a {
+            color: #00e5a0;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            background: #00a878;
+            color: white;
+            padding: 14px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🔎 SEARCH PLAYERS</h1>
+
+<form method="GET" action="/search-players">
+    <input
+        type="text"
+        name="q"
+        placeholder="Enter player name..."
+        value="{{ query }}"
+    >
+    <button type="submit">SEARCH</button>
+</form>
+
+{% for player in players %}
+
+<div class="player">
+    <h3>{{ player[1] }}</h3>
+    <p>Age: {{ player[2] }}</p>
+    <p>Phone: {{ player[3] }}</p>
+    <p>Sport: {{ player[4] }}</p>
+    <a href="/edit-player/{{ player[0] }}">EDIT PLAYER</a>
+</div>
+
+{% else %}
+
+<p style="text-align:center;">No players found.</p>
+
+{% endfor %}
+
+<a class="back" href="/">🏠 BACK TO DASHBOARD</a>
+
+</body>
+</html>

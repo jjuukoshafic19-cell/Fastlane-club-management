@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Teams - FASTLANE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #101820;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+        input, button {
+            padding: 12px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 6px;
+        }
+        input { width: 95%; }
+        button {
+            background: #00c853;
+            color: white;
+            font-weight: bold;
+        }
+        .team {
+            background: #263746;
+            padding: 15px;
+            margin-top: 12px;
+            border-radius: 8px;
+        }
+        a { color: #00e676; }
+    </style>
+</head>
+<body>
+
+    <h2>🔎 Search Teams</h2>
+
+    <form action="/search-teams" method="GET">
+        <input type="text" name="q"
+               placeholder="Enter team name"
+               value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% for team in teams %}
+    <div class="team">
+        <h3>{{ team[1] }}</h3>
+        <p>Sport: {{ team[2] }}</p>
+        <a href="/edit-team/{{ team[0] }}">Edit Team</a>
+    </div>
+    {% else %}
+    <p>No teams found.</p>
+    {% endfor %}
+
+    <br>
+    <a href="/">Back to Dashboard</a>
+
+</body>
+</html>

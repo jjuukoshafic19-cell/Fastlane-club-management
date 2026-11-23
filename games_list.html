@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FASTLANE - Match Results</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            background: #101820;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 15px;
+        }
+
+        h1 {
+            color: #00e676;
+            text-align: center;
+        }
+
+        .game {
+            background: #1e2b36;
+            padding: 18px;
+            margin: 15px 0;
+            border-radius: 12px;
+        }
+
+        .score {
+            font-size: 25px;
+            color: #00e676;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 7px;
+        }
+
+        button, a {
+            display: inline-block;
+            padding: 12px;
+            margin: 5px 2px;
+            border: none;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        button {
+            background: #00c853;
+            color: black;
+            width: 100%;
+        }
+
+        a {
+            background: #00c853;
+            color: black;
+        }
+
+        .delete {
+            background: #ff1744;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>FASTLANE MATCH RESULTS</h1>
+
+{% if request.args.get('success') %}
+<p style="color:#00e676;">MATCH REGISTERED SUCCESSFULLY!</p>
+{% endif %}
+
+{% for game in games %}
+
+<div class="game">
+
+    <h3>{{ game[1] }} VS {{ game[2] }}</h3>
+
+    <p>Sport: {{ game[3] }}</p>
+    <p>Date: {{ game[4] }}</p>
+
+    <div class="score">
+        {{ game[5] or 0 }} - {{ game[6] or 0 }}
+    </div>
+
+    <p>Status: {{ game[7] or 'Scheduled' }}</p>
+    {% if game[7] == 'Completed' %}
+
+    {% if game[5] > game[6] %}
+        <h3 style="color:#00e676;">
+            🏆 WINNER: {{ game[1] }}
+        </h3>
+
+    {% elif game[6] > game[5] %}
+        <h3 style="color:#00e676;">
+            🏆 WINNER: {{ game[2] }}
+        </h3>
+
+    {% else %}
+        <h3 style="color:orange;">
+            🤝 MATCH DRAW!
+        </h3>
+    {% endif %}
+
+{% endif %}
+
+    <form method="POST" action="/update-result/{{ game[0] }}">
+
+        <label>Home Team Score</label>
+        <input type="number" name="home_score"
+               min="0" value="{{ game[5] or 0 }}" required>
+
+        <label>Away Team Score</label>
+        <input type="number" name="away_score"
+               min="0" value="{{ game[6] or 0 }}" required>
+
+        <label>Match Status</label>
+        <select name="status">
+            <option value="Scheduled" {% if game[7] == 'Scheduled' %}selected{% endif %}>Scheduled</option>
+            <option value="Live" {% if game[7] == 'Live' %}selected{% endif %}>Live</option>
+            <option value="Completed" {% if game[7] == 'Completed' %}selected{% endif %}>Completed</option>
+        </select>
+
+        <button type="submit">SAVE MATCH RESULT</button>
+
+    </form>
+
+    <a href="/edit-game/{{ game[0] }}">EDIT GAME</a>
+
+    <form method="POST" action="/delete-game/{{ game[0] }}">
+        <button class="delete" type="submit">DELETE GAME</button>
+    </form>
+
+</div>
+
+{% endfor %}
+
+<a href="/games">REGISTER NEW GAME</a>
+<a href="/">HOME</a>
+
+</body>
+</html>

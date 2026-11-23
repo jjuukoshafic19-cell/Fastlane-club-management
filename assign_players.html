@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assign Players - FASTLANE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #101820;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+        .card {
+            background: #263746;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 10px;
+        }
+        select, button {
+            width: 100%;
+            padding: 13px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+        }
+        button {
+            background: #00c853;
+            color: white;
+            font-weight: bold;
+        }
+        a { color: #00e676; }
+    </style>
+</head>
+<body>
+
+<h2>👥 ASSIGN PLAYERS TO TEAMS</h2>
+
+<div class="card">
+    <form method="POST">
+
+        <label>Select Team</label>
+        <select name="team_id" required>
+            <option value="">Choose Team</option>
+            {% for team in teams %}
+            <option value="{{ team[0] }}">{{ team[1] }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Select Player</label>
+        <select name="player_id" required>
+            <option value="">Choose Player</option>
+            {% for player in players %}
+            <option value="{{ player[0] }}">{{ player[1] }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">ASSIGN PLAYER</button>
+    </form>
+</div>
+
+<h3>Current Team Assignments</h3>
+
+{% for assignment in assignments %}
+<div class="card">
+    <p>Team: {{ assignment[1] }}</p>
+    <p>Player: {{ assignment[2] }}</p>
+    <form method="POST" action="/remove-assignment/{{ assignment[0] }}">
+    <button type="submit" style="background:red;">
+        REMOVE PLAYER
+    </button>
+</form>
+</div>
+{% else %}
+<p>No players assigned yet.</p>
+{% endfor %}
+
+<br>
+<a href="/">Back to Dashboard</a>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FASTLANE - Teams</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #101820;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 15px;
+        }
+
+        h1 {
+            color: #00e676;
+            text-align: center;
+        }
+
+        .team {
+            background: #1e2b36;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+
+        a, button {
+            display: inline-block;
+            padding: 10px;
+            margin: 5px 2px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a {
+            background: #00c853;
+            color: black;
+        }
+
+        button {
+            background: #ff1744;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>FASTLANE TEAMS</h1>
+
+    {% for team in teams %}
+    <a href="/team-profile/{{ team[0] }}">🏆 View Team Profile</a>
+    <div class="team">
+        <h3>{{ team[1] }}</h3>
+        <p>Sport: {{ team[2] }}</p>
+
+        <a href="/edit-team/{{ team[0] }}">EDIT TEAM</a>
+
+        <form method="POST"
+              action="/delete-team/{{ team[0] }}"
+              style="display:inline;">
+            <button type="submit">DELETE TEAM</button>
+        </form>
+    </div>
+    {% endfor %}
+
+    <a href="/teams">REGISTER TEAM</a>
+    <a href="/">HOME</a>
+
+</body>
+</html>

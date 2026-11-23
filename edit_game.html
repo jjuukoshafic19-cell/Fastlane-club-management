@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FASTLANE - Edit Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #101820;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #00e676;
+            text-align: center;
+        }
+
+        form {
+            background: #1e2b36;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        input, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 7px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #00c853;
+            border: none;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            color: #00e676;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>EDIT GAME</h1>
+
+    <form method="POST">
+        <input name="home_team"
+               value="{{ game[1] }}"
+               placeholder="Home team" required>
+
+        <input name="away_team"
+               value="{{ game[2] }}"
+               placeholder="Away team" required>
+
+        <select name="sport" required>
+            <option value="Football" {% if game[3] == 'Football' %}selected{% endif %}>Football</option>
+            <option value="Basketball" {% if game[3] == 'Basketball' %}selected{% endif %}>Basketball</option>
+            <option value="Volleyball" {% if game[3] == 'Volleyball' %}selected{% endif %}>Volleyball</option>
+            <option value="FreeSE B" {% if game[3] == 'FreeSE B' %}selected{% endif %}>FreeSE B</option>
+        </select>
+
+        <input type="date"
+               name="match_date"
+               value="{{ game[4] }}"
+               required>
+
+        <button type="submit">SAVE CHANGES</button>
+    </form>
+
+    <a href="/games-list">BACK TO GAMES</a>
+
+</body>
+</html>

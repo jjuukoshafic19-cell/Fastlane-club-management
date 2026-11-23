@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FASTLANE Attendance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #101820;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+        .record {
+            background: #263746;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px;
+        }
+        button, a {
+            display: inline-block;
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        button {
+            background: #e53935;
+            color: white;
+        }
+        a {
+            background: #00c853;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<h2>📋 FASTLANE ATTENDANCE</h2>
+
+{% for record in records %}
+<div class="record">
+
+    <h3>{{ record[1] }}</h3>
+    <p>Date: {{ record[2] }}</p>
+    <p>Status: {{ record[3] }}</p>
+
+    <a href="/edit-attendance/{{ record[0] }}">✏️ Edit</a>
+
+    <form method="POST"
+          action="/delete-attendance/{{ record[0] }}"
+          onsubmit="return confirm('Delete this record?');">
+        <button type="submit">🗑️ Delete</button>
+    </form>
+
+</div>
+{% else %}
+<p>No attendance recorded yet.</p>
+{% endfor %}
+
+<br>
+<a href="/">Back to Dashboard</a>
+
+</body>
+</html>
+

@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FASTLANE - Register Player</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            background: #10131a;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: #202938;
+            padding: 22px;
+            border-radius: 12px;
+        }
+
+        h1 { color: #e5ad35; }
+
+        input, select {
+            width: 100%;
+            padding: 15px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #e5ad35;
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #e5ad35;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>FASTLANE</h1>
+    <h2>Player Registration</h2>
+
+    <p>Enter player details below.</p>
+
+    <form action="/players" method="POST">
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Full name"
+            required
+        >
+
+        <input
+            type="number"
+            name="age"
+            placeholder="Age"
+            min="1"
+            required
+        >
+
+        <input
+            type="tel"
+            name="phone"
+            placeholder="Phone number"
+        >
+
+        <select name="sport" required>
+            <option value="">Choose sport</option>
+            <option value="Football">Football</option>
+            <option value="Basketball">Basketball</option>
+            <option value="Volleyball">Volleyball</option>
+            <option value="FreeSE B">FreeSE B</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <button type="submit">
+            REGISTER PLAYER
+        </button>
+
+    </form>
+
+    <a href="/">← Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

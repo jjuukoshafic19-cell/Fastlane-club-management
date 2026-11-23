@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Team Roster - FASTLANE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background: #101820;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+        .card {
+            background: #263746;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 10px;
+        }
+        a { color: #00e676; }
+    </style>
+</head>
+<body>
+
+<h2>👥 TEAM ROSTER</h2>
+
+<div class="card">
+    <h3>{{ team[1] }}</h3>
+    <p>Total Players: {{ players|length }}</p>
+</div>
+
+{% for player in players %}
+<div class="card">
+    <h3>{{ player[1] }}</h3>
+    <p>Age: {{ player[2] }}</p>
+    <p>Phone: {{ player[3] }}</p>
+    <p>Sport: {{ player[4] }}</p>
+</div>
+{% else %}
+<p>No players assigned to this team yet.</p>
+{% endfor %}
+
+<br>
+<a href="/">🏠 Back to Dashboard</a>
+
+</body>
+</html>
